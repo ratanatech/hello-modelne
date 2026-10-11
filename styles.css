@@ -1,0 +1,555 @@
+/* ============================================================
+   LEAF TRACK — landing
+   Figma: Living Leaf Action Plan › Company Profile › LANDING PAGE
+   1440 artboard · 12 columns · 90px margins · 1260 content · 8px rows
+   ============================================================ */
+
+/* ── Tokens ─────────────────────────────────────────────── */
+:root {
+  /* exact, read from Figma */
+  --bg:        #0D0914;
+  --purple:    #584DFF;
+
+  /* sampled from the artboard — swap if you have the source values */
+  --surface:   #14101F;
+  --surface-2: #191426;
+  --line:      #262040;
+  --line-lit:  #3B3468;
+  --grad-from: #E8382F;
+  --grad-to:   #6D4DF6;
+
+  --ink:   #FFFFFF;
+  --ink-2: rgb(255 255 255 / .74);
+  --ink-3: rgb(255 255 255 / .52);
+
+  --ok:    #3FCF8E;
+  --warn:  #FFB020;
+  --bad:   #FF5C5C;
+
+  /* 4px space scale */
+  --s-1:4px; --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px;
+  --s-8:32px; --s-10:40px; --s-12:48px; --s-16:64px; --s-20:80px; --s-24:96px;
+
+  --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:28px; --r-pill:999px;
+
+  --font: 'Clash Grotesk', 'Trebuchet MS', system-ui, sans-serif;
+
+  --d-1: 40px; --h-1: 56px; --h-2: 40px; --h-3: 20px;
+  --t-body: 16px; --t-sm: 14px;
+
+  /* ── MOTION LAYER ─────────────────────────────────────
+     Named transitions, not loose durations. One place to retune
+     how the whole page feels. Every animated rule uses one. */
+  --dur-instant: 90ms;   /* press / release — must beat perception */
+  --dur-quick:   160ms;  /* hover, focus, colour                  */
+  --dur-calm:    280ms;  /* movement, size, reveal                */
+  --dur-slow:    520ms;  /* entrances, state machine transitions  */
+
+  --ease-out:  cubic-bezier(.22,.8,.32,1);   /* default: fast out, settle  */
+  --ease-in:   cubic-bezier(.5,0,.9,.3);     /* exits                      */
+  --ease-back: cubic-bezier(.34,1.4,.5,1);   /* confirmation only, sparing */
+
+  --t-press: transform var(--dur-instant) var(--ease-out);
+  --t-hover: background-color var(--dur-quick) var(--ease-out),
+             border-color     var(--dur-quick) var(--ease-out),
+             color            var(--dur-quick) var(--ease-out),
+             box-shadow       var(--dur-quick) var(--ease-out);
+  --t-move:  transform var(--dur-calm) var(--ease-out),
+             opacity   var(--dur-calm) var(--ease-out);
+
+  /* Focus ring never varies — not by section, state, or component.
+     It is an OUTLINE, not a box-shadow: a shadow-based ring loses to
+     any component that sets its own box-shadow (.btn--grad does), and
+     an outline also survives Windows high-contrast mode. */
+  --ring: 3px solid #FFFFFF;
+  --ring-gap: 3px;
+}
+
+/* M10 — reduced motion collapses every named duration at the root.
+   Nothing else in the file needs to know about the preference. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-instant:1ms; --dur-quick:1ms; --dur-calm:1ms; --dur-slow:1ms;
+  }
+  * { animation-duration:1ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; }
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 var(--t-body)/1.6 var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+h1,h2,h3 { margin: 0; font-weight: 600; letter-spacing: -.03em; line-height: 1.04; }
+p { margin: 0; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+ul,ol,dl,dd { margin: 0; padding: 0; list-style: none; }
+
+:where(a, button, input, [tabindex]):focus-visible {
+  outline: var(--ring);
+  outline-offset: var(--ring-gap);
+}
+
+.skip {
+  position: fixed; top: var(--s-3); left: var(--s-3); z-index: 200;
+  padding: var(--s-3) var(--s-5); background: var(--purple); color: #fff;
+  border-radius: var(--r-pill); transform: translateY(-200%);
+  transition: transform var(--dur-quick) var(--ease-out);
+}
+.skip:focus { transform: none; }
+
+.shell { width: min(1260px, calc(100% - 48px)); margin-inline: auto; }
+.shell--narrow { width: min(800px, calc(100% - 48px)); }
+
+.section { padding-block: clamp(64px, 9vw, 128px); }
+.section__title { font-size: clamp(28px, 4vw, var(--h-2)); }
+.section__sub { margin-top: var(--s-4); color: var(--ink-2); max-width: 58ch; }
+
+/* ── Buttons ── M4 ──────────────────────────────────────── */
+.btn {
+  --lift: 0px;
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--s-3);
+  min-height: 48px; padding: 0 var(--s-8);
+  border: 0; border-radius: var(--r-pill);
+  font: 500 15px/1 var(--font); color: var(--ink);
+  cursor: pointer; user-select: none;
+  transform: translateY(var(--lift));
+  transition: var(--t-hover), var(--t-press);
+}
+.btn--lg { min-height: 60px; padding: 0 var(--s-10); font-size: 17px; }
+
+.btn--grad {
+  background-image: linear-gradient(90deg, var(--grad-from), var(--grad-to));
+  box-shadow: 0 6px 20px rgb(109 77 246 / .22);
+}
+.btn--grad:hover { --lift: -2px; box-shadow: 0 12px 30px rgb(109 77 246 / .38); }
+.btn--grad:active { --lift: 0px; transform: translateY(0) scale(.975); }
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--line-lit);
+  color: var(--ink);
+}
+.btn--ghost:hover { --lift: -2px; border-color: var(--purple); background: rgb(88 77 255 / .10); }
+.btn--ghost:active { --lift: 0px; transform: translateY(0) scale(.975); }
+
+/* the arrow leads the eye where the button goes */
+.btn__arrow { transition: transform var(--dur-quick) var(--ease-out); }
+.btn:hover .btn__arrow { transform: translateX(5px); }
+
+/* ── Nav ── M1 M2 M3 ────────────────────────────────────── */
+.nav {
+  position: fixed; inset: var(--s-6) 0 auto; z-index: 100;
+  display: flex; justify-content: center;
+  pointer-events: none;
+  transition: var(--t-move);
+}
+.nav__pill {
+  pointer-events: auto;
+  display: flex; align-items: center; gap: clamp(20px, 3vw, 52px);
+  padding: 18px 24px 18px 32px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--line);
+  background: rgb(20 16 31 / .72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: var(--t-hover), padding var(--dur-calm) var(--ease-out);
+}
+/* M1 — system trigger: past 16px of scroll the bar commits to being a bar */
+.nav.is-stuck .nav__pill {
+  padding-block: 12px;
+  background: rgb(13 9 20 / .90);
+  border-color: var(--line-lit);
+  box-shadow: 0 14px 40px rgb(0 0 0 / .45);
+}
+
+.nav__brand { display: flex; align-items: center; gap: var(--s-3); }
+.nav__mark {
+  width: 34px; height: 34px; border-radius: 50% 12px 50% 50%;
+  background: linear-gradient(135deg, var(--grad-from), var(--grad-to));
+  transition: transform var(--dur-calm) var(--ease-out);
+}
+.nav__brand:hover .nav__mark { transform: rotate(-12deg) scale(1.06); }
+.nav__wordmark { font-size: 15px; line-height: 1.05; letter-spacing: -.02em; }
+.nav__wordmark strong { display: block; font-weight: 600; letter-spacing: .06em; }
+
+.nav__links { display: flex; gap: clamp(16px, 2.4vw, 40px); }
+.nav__links a {
+  position: relative; font-size: 15px; color: var(--ink-2);
+  padding-block: var(--s-2);
+  transition: color var(--dur-quick) var(--ease-out);
+}
+.nav__links a:hover { color: var(--ink); }
+/* M2 — the underline wipes in from the left, it does not fade in */
+.nav__links a::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
+  border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-quick) var(--ease-out);
+}
+.nav__links a:hover::after, .nav__links a:focus-visible::after { transform: scaleX(1); }
+
+/* M3 — language is a MODE, so it is labelled, not just coloured:
+   the active button keeps its own tint AND carries aria-pressed. */
+.langswitch { display: flex; align-items: center; gap: var(--s-1); }
+.langswitch__btn {
+  min-width: 40px; min-height: 32px; padding: 0 var(--s-3);
+  border: 1px solid transparent; border-radius: var(--r-pill);
+  background: transparent; color: var(--ink-3);
+  font: 500 13px/1 var(--font); letter-spacing: .04em; cursor: pointer;
+  transition: var(--t-hover);
+}
+.langswitch__btn:hover { color: var(--ink-2); }
+.langswitch__btn[aria-pressed="true"] {
+  color: var(--ink);
+  border-color: var(--line-lit);
+  background: linear-gradient(90deg, rgb(232 56 47 / .22), rgb(109 77 246 / .22));
+}
+.nav__cta { min-height: 48px; padding: 0 var(--s-6); }
+
+/* ── Hero ── M5 ─────────────────────────────────────────── */
+.hero { padding: clamp(140px, 16vw, 200px) 0 clamp(48px, 6vw, 96px); position: relative; }
+.hero::before {
+  content: ""; position: absolute; inset: -20% 0 40%;
+  background: radial-gradient(60% 50% at 22% 30%, rgb(109 77 246 / .20), transparent 70%),
+              radial-gradient(50% 40% at 78% 10%, rgb(232 56 47 / .12), transparent 70%);
+  pointer-events: none;
+}
+.hero__grid {
+  position: relative;
+  display: grid; grid-template-columns: 710fr 490fr; gap: clamp(32px, 5vw, 60px);
+  align-items: center;
+}
+.hero__copy h1 { font-size: clamp(40px, 6.2vw, 72px); }
+.hero__copy p { margin-top: var(--s-8); color: var(--ink-2); font-size: 17px; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-4); margin-top: var(--s-10); }
+
+/* Frame 427318526, measured: 710x470, three columns of 223.25px squares,
+   ~20px between columns and ~23.5px between rows. Columns 1 and 3 hold two
+   tiles and fill the frame exactly; column 2 holds three and sits 137px
+   higher, so it bleeds past the top and bottom edges. The frame clips.
+
+   cqw is 1% of the mosaic's own width, which keeps the offset and the row
+   gap proportional at any size — a px offset would drift as tiles shrink. */
+.mosaic {
+  container-type: inline-size;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  column-gap: 2.83%;                  /* 20.1 / 710 */
+  aspect-ratio: 710 / 470;
+  overflow: hidden;
+}
+.mosaic__col { display: grid; grid-auto-rows: max-content; row-gap: 3.31cqw; }
+.mosaic__col--mid { margin-top: -19.3cqw; }   /* -137 / 710 */
+
+.tile {
+  position: relative; margin: 0; overflow: hidden;
+  aspect-ratio: 1;
+  border-radius: var(--r-lg);
+  transition: var(--t-move);
+}
+
+.tile__img { position: absolute; inset: 0; transition: var(--t-move); }
+.tile[data-highlight] { z-index: 2; }
+
+/* the active tile is the signature moment: gradient edge, wireframe
+   read-out, and the person the asset belongs to */
+.tile::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  border-radius: inherit; padding: 2px;
+  background: linear-gradient(140deg, var(--grad-from), var(--grad-to));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: 0; transition: opacity var(--dur-calm) var(--ease-out);
+  pointer-events: none;
+}
+/* Hover and keyboard focus do the same thing as the active state, in CSS
+   alone, so the profile still appears if the script never runs. */
+.tile.is-active::before,
+.tile:hover::before,
+.tile:focus-within::before { opacity: 1; }
+
+/* The active card is washed in the brand gradient: red on the left, violet on
+   the right, and the wash ramps from barely-there at the top to near-solid at
+   the bottom. That ramp is the whole trick — it leaves the top of the model
+   readable in its own colours while the base dissolves into the gradient. */
+.tile__img::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: linear-gradient(90deg, var(--grad-from) 0%, #4C4BE8 46%, var(--grad-to) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / .08) 0%, rgb(0 0 0 / .34) 48%, rgb(0 0 0 / .95) 100%);
+          mask-image: linear-gradient(to bottom, rgb(0 0 0 / .08) 0%, rgb(0 0 0 / .34) 48%, rgb(0 0 0 / .95) 100%);
+  opacity: 0; transition: opacity var(--dur-calm) var(--ease-out);
+}
+.tile.is-active .tile__img::after,
+.tile:hover .tile__img::after,
+.tile:focus-within .tile__img::after { opacity: 1; }
+
+/* Two rows — avatar + name, then the status beneath it. A single row runs
+   out of tile long before a name like "Aruman H." does. */
+.tile__meta {
+  position: absolute; left: 2.6cqw; right: 2.6cqw; bottom: 2.6cqw; z-index: 2;
+  display: grid; grid-template-columns: auto minmax(0, 1fr);
+  align-items: center; gap: 2px var(--s-2);
+  opacity: 0; transform: translateY(8px);
+  transition: var(--t-move);
+}
+.tile__who { grid-column: 2; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile__status { grid-column: 2; justify-self: start; }
+.tile.is-active .tile__meta,
+.tile:hover .tile__meta,
+.tile:focus-within .tile__meta { opacity: 1; transform: none; }
+/* Only Aruman H. is a real person in the design. Everyone else gets an
+   initial rather than an empty grey disc, which reads as a missing image. */
+.tile__avatar {
+  display: grid; place-items: center; grid-row: 1 / span 2;
+  width: 7.25cqw; height: 7.25cqw; min-width: 26px; min-height: 26px;
+  border-radius: 50%;
+  border: 2px solid rgb(255 255 255 / .85);
+  background: linear-gradient(140deg,#4a5a72,#22303f) center/cover;
+  font-size: 2.7cqw; font-weight: 600; color: rgb(255 255 255 / .9);
+}
+.tile__avatar[data-photo] { background-image: url(assets/avatar-aruman.webp); color: transparent; }
+.tile__who { font-weight: 600; font-size: 2.76cqw; letter-spacing: -.01em; text-shadow: 0 1px 8px rgb(0 0 0 / .75); }
+/* status always carries a word, never colour alone */
+.tile__status {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: .28cqw 1cqw; border-radius: var(--r-pill);
+  background-image: linear-gradient(90deg, var(--grad-from), #E8386F);
+  font-size: 1.5cqw; font-weight: 500; color: #fff; white-space: nowrap;
+}
+/* the dot is a second signal beside the word, never the only one */
+.tile__status::before { content: ""; width: 1cqw; min-width: 5px; aspect-ratio: 1; border-radius: 50%; background: #fff; }
+.tile__status[data-state="review"] { background-image: linear-gradient(90deg, #3E6BFF, var(--purple)); }
+.tile__status[data-state="busy"]   { background-image: linear-gradient(90deg, #C97A12, #E8A33A); }
+.tile__status[data-state="wait"]   { background-image: none; background-color: rgb(13 9 20 / .82); box-shadow: inset 0 0 0 1px var(--line-lit); }
+
+/* Art. background-color is each render's own backdrop, so the tile is the
+   right colour before the image arrives and stays right if it never does. */
+[data-art] { background-size: cover; background-position: center; background-repeat: no-repeat; }
+[data-art="fan"]    { background-color: #173154; background-image: url(assets/fan.webp); }
+[data-art="shoe"]   { background-color: #2F0609; background-image: url(assets/shoe.webp); }
+[data-art="car"]    { background-color: #98422F; background-image: url(assets/car.webp); }
+[data-art="desk"]   { background-color: #013B53; background-image: url(assets/desk.webp); }
+[data-art="bag"]    { background-color: #5D262B; background-image: url(assets/bag.webp); }
+[data-art="crt"]    { background-color: #381C2C; background-image: url(assets/crt.webp); }
+[data-art="laptop"] { background-color: #354950; background-image: url(assets/laptop.webp); }
+[data-art="step1"]  { background-color: #2C3A44; background-image: url(assets/step1-upload.webp); }
+[data-art="step2"]  { background-color: #E9EAEC; background-image: url(assets/step2-convert.webp); }
+[data-art="step3"]  { background-color: #1B2430; background-image: url(assets/step3-review.webp); }
+[data-art="step4"]  { background-color: #46504A; background-image: url(assets/step4-approve.webp); }
+/* the FAQ render is the same fan that opens the mosaic */
+[data-art="faq"]    { background-color: #173154; background-image: url(assets/fan.webp); }
+
+/* ── Feature cards ── M6 ────────────────────────────────── */
+.cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--s-6); margin-top: var(--s-12);
+}
+.card {
+  padding: var(--s-6);
+  border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--surface);
+  transition: var(--t-hover), var(--t-move);
+}
+.card:hover { border-color: var(--line-lit); background: var(--surface-2); transform: translateY(-3px); }
+.card h3 { font-size: var(--h-3); margin-bottom: var(--s-3); }
+.card p { color: var(--ink-2); font-size: 15px; }
+.card__icon {
+  display: block; width: 30px; height: 30px; margin-bottom: var(--s-4);
+  border-radius: var(--r-sm);
+  background: linear-gradient(140deg, var(--purple), #8E4DFF);
+  transition: transform var(--dur-calm) var(--ease-out);
+}
+.card:hover .card__icon { transform: translateY(-2px) rotate(-4deg); }
+.card:nth-child(1) .card__icon { background: linear-gradient(140deg, var(--grad-from), #FF4D9A); }
+.card:nth-child(2) .card__icon { background: linear-gradient(140deg, #3E6BFF, var(--purple)); }
+.card:nth-child(3) .card__icon { background: linear-gradient(140deg, #4A57FF, #7C4DFF); }
+
+/* ── Live demo dropzone ── M7 ───────────────────────────── */
+.section--demo { text-align: center; }
+.section--demo .section__sub { margin-inline: auto; }
+
+.drop {
+  position: relative; margin-top: var(--s-12);
+  border: 2px dashed var(--line-lit); border-radius: var(--r-xl);
+  background:
+    radial-gradient(80% 60% at 50% 110%, rgb(109 77 246 / .16), transparent 70%),
+    radial-gradient(60% 50% at 20% -10%, rgb(232 56 47 / .10), transparent 70%),
+    var(--surface);
+  transition: var(--t-hover), var(--t-move);
+}
+.drop__input {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  opacity: 0; cursor: pointer;
+}
+.drop__body { padding: clamp(40px, 7vw, 72px) var(--s-8); pointer-events: none; }
+.drop__body .btn { pointer-events: auto; }
+.drop__icon { display: inline-block; transition: var(--t-move); }
+.drop__arrow { transition: transform var(--dur-calm) var(--ease-out); }
+.drop__title { font-size: 26px; margin-top: var(--s-5); }
+.drop__help { margin: var(--s-4) auto 0; max-width: 52ch; color: var(--ink-2); font-size: 15px; }
+.drop__browse { margin-top: var(--s-6); cursor: pointer; }
+
+.drop__progress {
+  height: 4px; margin: var(--s-6) auto 0; max-width: 320px;
+  border-radius: var(--r-pill); background: var(--line);
+  opacity: 0; transition: opacity var(--dur-quick) var(--ease-out);
+}
+.drop__progress > span {
+  display: block; height: 100%; width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--grad-from), var(--grad-to));
+  transition: width var(--dur-quick) linear;
+}
+.drop__status {
+  min-height: 1.5em; margin-top: var(--s-4);
+  font-size: var(--t-sm); color: var(--ink-2);
+}
+
+/* state: over — the zone commits, and the arrow points where the file goes */
+.drop[data-state="over"] {
+  border-color: var(--purple);
+  border-style: solid;
+  transform: scale(1.012);
+  box-shadow: 0 0 0 6px rgb(88 77 255 / .12);
+}
+.drop[data-state="over"] .drop__arrow { transform: translateY(4px); }
+.drop[data-state="over"] .drop__icon { transform: translateY(-4px); }
+
+/* state: reading — honest progress, driven by bytes actually read */
+.drop[data-state="reading"] { border-style: solid; border-color: var(--line-lit); }
+.drop[data-state="reading"] .drop__progress { opacity: 1; }
+
+/* state: ready — one confirmation beat, then back to work */
+.drop[data-state="ready"] { border-style: solid; border-color: var(--ok); }
+.drop[data-state="ready"] .drop__status { color: var(--ok); }
+.drop[data-state="ready"] .drop__icon { animation: pop var(--dur-slow) var(--ease-back); }
+@keyframes pop { 0%{transform:scale(.8)} 60%{transform:scale(1.06)} 100%{transform:scale(1)} }
+
+/* state: error — colour is never the only signal, the text says what/why/next */
+.drop[data-state="error"] { border-style: solid; border-color: var(--bad); }
+.drop[data-state="error"] .drop__status { color: var(--bad); }
+.drop[data-state="error"] .drop__icon { animation: shake var(--dur-slow) var(--ease-out); }
+@keyframes shake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-7px)} 45%{transform:translateX(6px)} 70%{transform:translateX(-3px)} }
+
+/* ── How it works ── M8 ─────────────────────────────────── */
+.how__head { display: flex; flex-direction: column; align-items: flex-end; text-align: right; }
+.how__head .section__sub { margin-top: var(--s-2); }
+.steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 44px; margin-top: var(--s-12);
+}
+.step {
+  padding: var(--s-8);
+  border: 1px solid var(--line); border-radius: var(--r-md);
+  background: var(--surface);
+  /* the stair-step from the Figma: each card sits 8px lower than the last */
+  transform: translateY(calc(var(--i) * 8px));
+  transition: var(--t-hover);
+}
+.step:hover { border-color: var(--line-lit); }
+.step h3 { font-size: 22px; }
+.step__n { background: linear-gradient(90deg, var(--grad-from), var(--grad-to)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.step p { margin-top: var(--s-4); color: var(--ink-2); font-size: 15px; }
+.step__img { margin-top: var(--s-5); aspect-ratio: 3/2; border-radius: var(--r-md); }
+
+/* ── FAQ ────────────────────────────────────────────────── */
+.faq__grid { display: grid; grid-template-columns: 457fr 720fr; gap: clamp(32px, 5vw, 64px); align-items: start; }
+.faq__art { aspect-ratio: 457/480; border-radius: var(--r-lg); }
+.faq { margin-top: var(--s-10); display: grid; gap: var(--s-6); }
+.faq__item { padding-left: 44px; position: relative; }
+.faq__item::before {
+  content: ""; position: absolute; left: 0; top: 2px;
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--purple);
+  transition: var(--t-hover);
+}
+/* the tick itself: two borders on a rotated box */
+.faq__item::after {
+  content: ""; position: absolute; left: 9px; top: 8px;
+  width: 5px; height: 9px;
+  border: solid var(--purple); border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.faq__item:hover::before { box-shadow: 0 0 0 5px rgb(88 77 255 / .16); }
+.faq dt { font-size: 19px; font-weight: 600; letter-spacing: -.02em; }
+.faq dd { margin-top: var(--s-2); color: var(--ink-2); font-size: 15px; }
+
+/* ── Footer ─────────────────────────────────────────────── */
+.foot {
+  padding-block: clamp(48px, 6vw, 72px);
+  background: linear-gradient(100deg, var(--grad-from), #B03A8C 48%, var(--grad-to));
+}
+.foot__grid {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: clamp(32px, 5vw, 80px) clamp(32px, 6vw, 120px);
+}
+.foot__pitch h2 { font-size: clamp(24px, 3vw, 32px); max-width: 14ch; }
+.foot__pitch p { margin-top: var(--s-3); max-width: 46ch; font-size: var(--t-sm); color: rgb(255 255 255 / .84); }
+.foot__social h3 { font-size: 17px; }
+.foot__social p { margin-top: var(--s-2); max-width: 34ch; font-size: 13px; color: rgb(255 255 255 / .84); }
+.foot__icons { display: flex; gap: var(--s-3); margin-top: var(--s-5); }
+.foot__icons a {
+  display: grid; place-items: center; width: 40px; height: 40px;
+  border-radius: var(--r-sm); background: rgb(255 255 255 / .12);
+  transition: var(--t-hover), var(--t-press);
+}
+.foot__icons a:hover { background: rgb(255 255 255 / .26); transform: translateY(-2px); }
+.foot__icons a:active { transform: translateY(0) scale(.94); }
+
+.foot__links { display: flex; gap: var(--s-6); align-self: end; font-size: var(--t-sm); }
+.foot__links a { position: relative; padding-block: 2px; }
+.foot__links a::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform var(--dur-quick) var(--ease-out);
+}
+.foot__links a:hover::after { transform: scaleX(1); }
+.foot__legal { align-self: end; justify-self: end; font-size: 13px; color: rgb(255 255 255 / .74); }
+
+/* ── Scroll reveal ── M8 ────────────────────────────────── */
+/* Only app.js adds .reveal--pending, and only to elements below the fold.
+   Nothing here hides content on its own, so a page whose script never runs
+   is plain and completely readable rather than blank. */
+.reveal--pending { opacity: 0; transform: translateY(18px); transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out); }
+.reveal--pending.is-in { opacity: 1; transform: none; }
+.step.reveal--pending { transform: translateY(calc(var(--i) * 8px + 18px)); }
+.step.reveal--pending.is-in { transform: translateY(calc(var(--i) * 8px)); }
+/* stagger inside a group without a transition-delay on every element */
+.reveal--pending.is-in { transition-delay: calc(var(--i, 0) * 70ms); }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .hero__grid, .faq__grid { grid-template-columns: 1fr; }
+  .hero__copy { order: -1; }
+  .how__head { align-items: flex-start; text-align: left; }
+  .step { transform: none; }
+  .step.reveal--pending { transform: translateY(18px); }
+  .step.reveal--pending.is-in { transform: none; }
+}
+@media (max-width: 860px) {
+  .nav { inset: var(--s-3) 0 auto; }
+  .nav__pill { width: calc(100% - 24px); gap: var(--s-4); padding: 12px 12px 12px 16px; }
+  .nav__links { display: none; }
+  .foot__grid { grid-template-columns: 1fr; }
+  .foot__legal { justify-self: start; }
+}
+@media (max-width: 560px) {
+  .shell { width: calc(100% - 32px); }
+  .hero__actions .btn { flex: 1 1 100%; }
+  /* the staggered clip needs width to read; below this it is a plain grid */
+  .mosaic { grid-template-columns: repeat(2, 1fr); aspect-ratio: auto; column-gap: var(--s-3); }
+  .mosaic__col { row-gap: var(--s-3); }
+  .mosaic__col--mid { margin-top: 0; }
+  .tile__who { font-size: 5.2cqw; }
+  .tile__status { font-size: 3.8cqw; }
+  .tile__status::before { width: 3cqw; }
+  .tile__avatar { width: 12cqw; height: 12cqw; font-size: 4.6cqw; }
+}

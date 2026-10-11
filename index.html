@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leaf Track — Track Every Step. Create Without Limits.</title>
+<meta name="description" content="Manage your entire 3D workflow from assignment to final approval. Collaborate, review, and track assets seamlessly in interactive 3D space.">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-grotesk@400,500,600,700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ══ NAV ══ M1 scroll state · M2 link hover · M3 language MODE ══ -->
+<header class="nav" id="nav">
+  <nav class="nav__pill" aria-label="Primary">
+    <a class="nav__brand" href="#main">
+      <span class="nav__mark" aria-hidden="true"></span>
+      <span class="nav__wordmark">Leaf<strong>TRACK</strong></span>
+    </a>
+
+    <ul class="nav__links">
+      <li><a href="#features"  data-en="Features"  data-id="Fitur">Features</a></li>
+      <li><a href="#how"       data-en="Workflow"  data-id="Alur Kerja">Workflow</a></li>
+      <li><a href="#demo"      data-en="3D Viewer" data-id="3D Viewer">3D Viewer</a></li>
+      <li><a href="#faq"       data-en="Pricing"   data-id="Harga">Pricing</a></li>
+    </ul>
+
+    <div class="langswitch" role="group" aria-label="Language">
+      <button type="button" class="langswitch__btn" data-set-lang="en" aria-pressed="true"  lang="en">EN</button>
+      <button type="button" class="langswitch__btn" data-set-lang="id" aria-pressed="false" lang="id">ID</button>
+    </div>
+
+    <a class="btn btn--grad nav__cta" href="https://calendly.com/hello-modelne/30min" target="_blank" rel="noopener" data-en="Book a Demo" data-id="Jadwalkan Demo">Book a Demo</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ══ HERO ══ M5 mosaic long loop ══ -->
+<section class="hero">
+  <div class="shell hero__grid">
+
+    <!-- mosaic: hover, or the auto-advance, highlights a tile and shows its owner -->
+    <!-- Frame 427318526: three columns of square tiles, the middle one
+         offset upward so it clips top and bottom. Clip content is on. -->
+    <div class="mosaic" id="mosaic" aria-label="Assets in production">
+      <div class="mosaic__col">
+        <figure class="tile tile--fan is-active">
+          <div class="tile__img" data-art="fan"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" data-photo aria-hidden="true">A</span>
+            <span class="tile__who">Aruman H.</span>
+            <span class="tile__status" data-state="done" data-en="Completed!" data-id="Selesai!">Completed!</span>
+          </figcaption>
+        </figure>
+        <figure class="tile tile--bag">
+          <div class="tile__img" data-art="bag"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" aria-hidden="true">Y</span>
+            <span class="tile__who">Yoga S.</span>
+            <span class="tile__status" data-state="wait" data-en="Assigned" data-id="Ditugaskan">Assigned</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="mosaic__col mosaic__col--mid">
+        <figure class="tile tile--shoe">
+          <div class="tile__img" data-art="shoe"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" aria-hidden="true">D</span>
+            <span class="tile__who">Dita R.</span>
+            <span class="tile__status" data-state="review" data-en="In review" data-id="Sedang direview">In review</span>
+          </figcaption>
+        </figure>
+        <figure class="tile tile--desk">
+          <div class="tile__img" data-art="desk"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" aria-hidden="true">S</span>
+            <span class="tile__who">Sari W.</span>
+            <span class="tile__status" data-state="review" data-en="Revising" data-id="Revisi">Revising</span>
+          </figcaption>
+        </figure>
+        <figure class="tile tile--laptop">
+          <div class="tile__img" data-art="laptop"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" aria-hidden="true">R</span>
+            <span class="tile__who">Rizal A.</span>
+            <span class="tile__status" data-state="wait" data-en="Queued" data-id="Antre">Queued</span>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="mosaic__col">
+        <figure class="tile tile--car">
+          <div class="tile__img" data-art="car"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" aria-hidden="true">B</span>
+            <span class="tile__who">Bagas P.</span>
+            <span class="tile__status" data-state="busy" data-en="Rendering" data-id="Merender">Rendering</span>
+          </figcaption>
+        </figure>
+        <figure class="tile tile--crt">
+          <div class="tile__img" data-art="crt"></div>
+          <figcaption class="tile__meta">
+            <span class="tile__avatar" aria-hidden="true">N</span>
+            <span class="tile__who">Nadia L.</span>
+            <span class="tile__status" data-state="done" data-en="Approved" data-id="Disetujui">Approved</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="hero__copy">
+      <h1 data-en="Track Every Step. Create Without Limits."
+          data-id="Lacak Setiap Langkah. Berkarya Tanpa Batas.">Track Every Step. Create Without Limits.</h1>
+      <p data-en="Manage your entire 3D workflow from assignment to final approval. Collaborate, review, and track assets seamlessly in interactive 3D space."
+         data-id="Kelola seluruh alur kerja 3D Anda dari penugasan hingga persetujuan akhir. Berkolaborasi, tinjau, dan pantau aset dengan mulus di ruang 3D interaktif.">Manage your entire 3D workflow from assignment to final approval. Collaborate, review, and track assets seamlessly in interactive 3D space.</p>
+      <div class="hero__actions">
+        <a class="btn btn--grad btn--lg" href="#demo">
+          <span data-en="Get Started" data-id="Mulai Sekarang">Get Started</span>
+          <svg class="btn__arrow" width="22" height="14" viewBox="0 0 22 14" fill="none" aria-hidden="true"><path d="M1 7h19m0 0-6-6m6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#how" data-en="See How It Works" data-id="Lihat Cara Kerjanya">See How It Works</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ FEATURES ══ M6 card hover ══ -->
+<section class="section" id="features">
+  <div class="shell">
+    <h2 class="section__title reveal"
+        data-en="Everything you need for 3D production"
+        data-id="Semua yang Anda butuhkan untuk produksi 3D">Everything you need for 3D production</h2>
+
+    <ul class="cards" role="list">
+      <li class="card reveal">
+        <span class="card__icon" data-icon="viewer" aria-hidden="true"></span>
+        <h3 data-en="Interactive 3D Viewer" data-id="Viewer 3D Interaktif">Interactive 3D Viewer</h3>
+        <p data-en="View, rotate, zoom, and inspect GLB models directly in your browser without additional software."
+           data-id="Lihat, putar, zoom, dan periksa model GLB langsung di browser tanpa software tambahan.">View, rotate, zoom, and inspect GLB models directly in your browser without additional software.</p>
+      </li>
+      <li class="card reveal">
+        <span class="card__icon" data-icon="annotate" aria-hidden="true"></span>
+        <h3 data-en="Spatial Annotations" data-id="Anotasi Spasial">Spatial Annotations</h3>
+        <p data-en="Leave comments and feedback pinned to exact points on the 3D geometry for clear and precise revisions."
+           data-id="Tinggalkan komentar dan masukan yang tersemat di titik presisi pada geometri 3D untuk revisi yang jelas.">Leave comments and feedback pinned to exact points on the 3D geometry for clear and precise revisions.</p>
+      </li>
+      <li class="card reveal">
+        <span class="card__icon" data-icon="convert" aria-hidden="true"></span>
+        <h3 data-en="Advanced Task Management" data-id="Manajemen Tugas Lanjutan">Advanced Task Management</h3>
+        <p data-en="Upload your raw FBX files and let Leaf Track automatically convert them into lightweight GLB models."
+           data-id="Unggah file FBX mentah Anda dan biarkan Leaf Track mengubahnya menjadi model GLB yang ringan.">Upload your raw FBX files and let Leaf Track automatically convert them into lightweight GLB models.</p>
+      </li>
+      <li class="card reveal">
+        <span class="card__icon" data-icon="workflow" aria-hidden="true"></span>
+        <h3 data-en="Studio Workflow" data-id="Alur Kerja Studio">Studio Workflow</h3>
+        <p data-en="Assign tasks to artists, track production status, manage deadlines, and move projects from assignment to completion."
+           data-id="Tugaskan pekerjaan ke artist, pantau status produksi, kelola tenggat, dan bawa proyek dari penugasan hingga selesai.">Assign tasks to artists, track production status, manage deadlines, and move projects from assignment to completion.</p>
+      </li>
+      <li class="card reveal">
+        <span class="card__icon" data-icon="review" aria-hidden="true"></span>
+        <h3 data-en="Review &amp; Revision" data-id="Review &amp; Revisi">Review &amp; Revision</h3>
+        <p data-en="Review submitted work, leave feedback, and send tasks back for revision without losing track of previous iterations."
+           data-id="Tinjau hasil kerja, beri masukan, dan kirim balik untuk revisi tanpa kehilangan jejak iterasi sebelumnya.">Review submitted work, leave feedback, and send tasks back for revision without losing track of previous iterations.</p>
+      </li>
+      <li class="card reveal">
+        <span class="card__icon" data-icon="overview" aria-hidden="true"></span>
+        <h3 data-en="Production Overview" data-id="Ringkasan Produksi">Production Overview</h3>
+        <p data-en="Get a clear view of your entire production, including artist workloads, task progress, pending reviews, revisions, &amp; completed work."
+           data-id="Dapatkan gambaran utuh produksi Anda: beban kerja artist, progres tugas, review tertunda, revisi, dan pekerjaan selesai.">Get a clear view of your entire production, including artist workloads, task progress, pending reviews, revisions, &amp; completed work.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══ LIVE DEMO ══ M7 dropzone state machine ══ -->
+<section class="section section--demo" id="demo">
+  <div class="shell shell--narrow">
+    <h2 class="section__title reveal" data-en="Live Demo" data-id="Demo Langsung">Live Demo</h2>
+    <p class="section__sub reveal"
+       data-en="Test our viewer's performance. Drag &amp; drop your GLB model — no upload needed. Privacy guaranteed, because everything is processed client-side."
+       data-id="Uji performa viewer kami. Drag &amp; drop model GLB Anda tanpa perlu upload. Privasi terjamin karena semua diproses di client-side.">Test our viewer's performance. Drag &amp; drop your GLB model — no upload needed. Privacy guaranteed, because everything is processed client-side.</p>
+
+    <!-- data-state: idle | over | reading | ready | error -->
+    <div class="drop reveal" id="drop" data-state="idle">
+      <input type="file" id="dropInput" class="drop__input" accept=".glb,.fbx,model/gltf-binary" aria-describedby="dropHelp dropStatus">
+
+      <div class="drop__body">
+        <span class="drop__icon" aria-hidden="true">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <path d="M18 34a9 9 0 0 1 .9-17.96A13 13 0 0 1 43 20.5 8.5 8.5 0 0 1 41.5 37H36" stroke="url(#g1)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="drop__arrow" d="M28 47V27m0 0-7 7m7-7 7 7" stroke="url(#g1)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs><linearGradient id="g1" x1="10" y1="14" x2="46" y2="48" gradientUnits="userSpaceOnUse"><stop stop-color="var(--grad-from)"/><stop offset="1" stop-color="var(--grad-to)"/></linearGradient></defs>
+          </svg>
+        </span>
+
+        <h3 class="drop__title" data-en="Try It Now" data-id="Coba Langsung">Try It Now</h3>
+
+        <p class="drop__help" id="dropHelp"
+           data-en="Drag &amp; drop your team's GLB / FBX file here (max 10MB). The model renders entirely in your browser — nothing is uploaded to a server."
+           data-id="Drag &amp; drop file GLB / FBX tim game Anda ke sini (maks. 10MB). Model dirender sepenuhnya di browser Anda, tanpa upload ke server.">Drag &amp; drop your team's GLB / FBX file here (max 10MB). The model renders entirely in your browser — nothing is uploaded to a server.</p>
+
+        <!-- visible fallback for the invisible drag gesture -->
+        <label class="btn btn--ghost drop__browse" for="dropInput"
+               data-en="Choose a file" data-id="Pilih file">Choose a file</label>
+
+        <!-- honest, deterministic progress: bytes read, not a fake timer -->
+        <div class="drop__progress" aria-hidden="true"><span id="dropBar"></span></div>
+
+        <!-- single live region: every state speaks here -->
+        <p class="drop__status" id="dropStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ M8 staggered reveal ══ -->
+<section class="section" id="how">
+  <div class="shell">
+    <header class="how__head">
+      <h2 class="section__title reveal" data-en="How It Works" data-id="Cara Kerjanya">How It Works</h2>
+      <p class="section__sub reveal"
+         data-en="Streamline your 3D workflow in four simple steps."
+         data-id="Rapikan alur kerja 3D Anda dalam empat langkah sederhana.">Streamline your 3D workflow in four simple steps.</p>
+    </header>
+
+    <ol class="steps" role="list">
+      <li class="step reveal" style="--i:0">
+        <h3><span class="step__n">1.</span> <span data-en="Upload 3D Model" data-id="Unggah Model 3D">Upload 3D Model</span></h3>
+        <p data-en="Upload your raw 3D assets (FBX)." data-id="Unggah aset 3D mentah Anda (FBX).">Upload your raw 3D assets (FBX).</p>
+        <div class="step__img" data-art="step1"></div>
+      </li>
+      <li class="step reveal" style="--i:1">
+        <h3><span class="step__n">2.</span> <span data-en="Auto Conversion" data-id="Konversi Otomatis">Auto Conversion</span></h3>
+        <p data-en="We automatically convert your file to a lightweight web-ready GLB." data-id="Kami mengonversi file Anda otomatis ke GLB ringan yang siap web.">We automatically convert your file to a lightweight web-ready GLB.</p>
+        <div class="step__img" data-art="step2"></div>
+      </li>
+      <li class="step reveal" style="--i:2">
+        <h3><span class="step__n">3.</span> <span data-en="Review &amp; Annotate" data-id="Review &amp; Anotasi">Review &amp; Annotate</span></h3>
+        <p data-en="Inspect the model &amp; leave spatial annotations." data-id="Periksa model &amp; tinggalkan anotasi spasial.">Inspect the model &amp; leave spatial annotations.</p>
+        <div class="step__img" data-art="step3"></div>
+      </li>
+      <li class="step reveal" style="--i:3">
+        <h3><span class="step__n">4.</span> <span data-en="Manage &amp; Approve" data-id="Kelola &amp; Setujui">Manage &amp; Approve</span></h3>
+        <p data-en="Assign fixes, track status, &amp; approve final deliverables." data-id="Tugaskan perbaikan, pantau status, &amp; setujui hasil akhir.">Assign fixes, track status, &amp; approve final deliverables.</p>
+        <div class="step__img" data-art="step4"></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="section" id="faq">
+  <div class="shell faq__grid">
+    <div class="faq__art reveal" data-art="faq"></div>
+
+    <div class="faq__body">
+      <h2 class="section__title reveal" data-en="Frequently Asked Questions" data-id="Pertanyaan yang Sering Diajukan">Frequently Asked Questions</h2>
+      <p class="section__sub reveal" data-en="Have another question? Reach out to our support team." data-id="Punya pertanyaan lain? Hubungi tim dukungan kami.">Have another question? Reach out to our support team.</p>
+
+      <dl class="faq">
+        <div class="faq__item reveal">
+          <dt data-en="Can I upgrade or downgrade my plan at any time?" data-id="Bisakah saya naik atau turun paket kapan saja?">Can I upgrade or downgrade my plan at any time?</dt>
+          <dd data-en="Yes, you can upgrade or downgrade your plan at any time. Prorated charges will be applied automatically."
+              data-id="Ya, Anda bisa naik atau turun paket kapan saja. Biaya prorata diterapkan otomatis.">Yes, you can upgrade or downgrade your plan at any time. Prorated charges will be applied automatically.</dd>
+        </div>
+        <div class="faq__item reveal">
+          <dt data-en="Does it support texture images?" data-id="Apakah mendukung gambar tekstur?">Does it support texture images?</dt>
+          <dd data-en="Yes. Because we use FBX, PBR textures are supported."
+              data-id="Ya. Karena kami menggunakan FBX, tekstur PBR didukung.">Yes. Because we use FBX, PBR textures are supported.</dd>
+        </div>
+        <div class="faq__item reveal">
+          <dt data-en="Is character animation supported?" data-id="Apakah animasi karakter didukung?">Is character animation supported?</dt>
+          <dd data-en="Yes, we support character animations, including rigging, skinned meshes, and named animation clips."
+              data-id="Ya, kami mendukung animasi karakter, termasuk rigging, skinned mesh, dan klip animasi bernama.">Yes, we support character animations, including rigging, skinned meshes, and named animation clips.</dd>
+        </div>
+        <div class="faq__item reveal">
+          <dt data-en="Can clients view the 3D models without creating an account?" data-id="Bisakah klien melihat model 3D tanpa membuat akun?">Can clients view the 3D models without creating an account?</dt>
+          <dd data-en="Yes, you can share a public link to the 3D viewer for your clients to review and annotate."
+              data-id="Ya, Anda bisa membagikan tautan publik ke viewer 3D agar klien dapat meninjau dan memberi anotasi.">Yes, you can share a public link to the 3D viewer for your clients to review and annotate.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer class="foot">
+  <div class="shell foot__grid">
+    <div class="foot__pitch">
+      <h2 data-en="Ready to keep your production moving?" data-id="Siap menjaga produksi Anda terus bergerak?">Ready to keep your production moving?</h2>
+      <p data-en="Bring your artists, tasks, reviews, and 3D work into one connected workspace."
+         data-id="Satukan artist, tugas, review, dan pekerjaan 3D Anda dalam satu ruang kerja.">Bring your artists, tasks, reviews, and 3D work into one connected workspace.</p>
+    </div>
+
+    <div class="foot__social">
+      <h3 data-en="Follow Leaf Track" data-id="Ikuti Leaf Track">Follow Leaf Track</h3>
+      <p data-en="Get product updates, studio insights, and news from the team."
+         data-id="Dapatkan update produk, wawasan studio, dan kabar dari tim.">Get product updates, studio insights, and news from the team.</p>
+      <ul class="foot__icons" role="list">
+        <li><a href="#" aria-label="LinkedIn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0ZM.25 8.25h4.5V24H.25V8.25ZM8.5 8.25h4.3v2.15h.06c.6-1.1 2.07-2.26 4.26-2.26 4.56 0 5.4 2.9 5.4 6.68V24h-4.5v-7.9c0-1.88-.03-4.3-2.7-4.3-2.7 0-3.12 2.05-3.12 4.17V24H8.5V8.25Z"/></svg></a></li>
+        <li><a href="#" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.3" fill="currentColor" stroke="none"/></svg></a></li>
+        <li><a href="#" aria-label="Discord"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.9A19 19 0 0 0 15.6 3.5l-.3.6a17 17 0 0 1 4.2 1.4A15.6 15.6 0 0 0 12 4.4c-3 0-5.5.6-7.5 1.1a17 17 0 0 1 4.2-1.4l-.3-.6A19 19 0 0 0 3.7 4.9C1.3 8.6.6 12.2.9 15.8a19 19 0 0 0 5.8 2.9l1.2-1.9a12 12 0 0 1-1.9-.9l.5-.4a13.6 13.6 0 0 0 11 0l.5.4c-.6.4-1.2.7-1.9.9l1.2 1.9a19 19 0 0 0 5.8-2.9c.4-4.2-.6-7.8-2.8-10.9ZM8.5 13.8c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3Zm7 0c-1.1 0-2-1-2-2.3s.9-2.3 2-2.3 2 1 2 2.3-.9 2.3-2 2.3Z"/></svg></a></li>
+      </ul>
+    </div>
+
+    <ul class="foot__links" role="list">
+      <li><a href="#" data-en="Documentation" data-id="Dokumentasi">Documentation</a></li>
+      <li><a href="#" data-en="Help Center" data-id="Pusat Bantuan">Help Center</a></li>
+      <li><a href="#" data-en="Blog" data-id="Blog">Blog</a></li>
+    </ul>
+
+    <p class="foot__legal" data-en="© 2026 Living Leaf Studio. All rights reserved."
+       data-id="© 2026 Living Leaf Studio. Hak cipta dilindungi.">© 2026 Living Leaf Studio. All rights reserved.</p>
+  </div>
+</footer>
+
+<script defer src="validate.js"></script>
+<script defer src="app.js"></script>
+</body>
+</html>
