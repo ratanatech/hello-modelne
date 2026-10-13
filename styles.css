@@ -172,8 +172,7 @@ ul,ol,dl,dd { margin: 0; padding: 0; list-style: none; }
 
 .nav__brand { display: flex; align-items: center; gap: var(--s-3); }
 .nav__mark {
-  width: 34px; height: 34px; border-radius: 50% 12px 50% 50%;
-  background: linear-gradient(135deg, var(--grad-from), var(--grad-to));
+  width: 34px; height: 34px; object-fit: contain;
   transition: transform var(--dur-calm) var(--ease-out);
 }
 .nav__brand:hover .nav__mark { transform: rotate(-12deg) scale(1.06); }
